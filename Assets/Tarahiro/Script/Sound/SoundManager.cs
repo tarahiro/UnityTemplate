@@ -259,7 +259,6 @@ public class SoundManager
             seMasterDataProvider = new SeMasterDataProvider();
         }
 
-        private Const.InterpolateType InterpolateType = Const.InterpolateType.AccelDecel;
         private AudioListener audioListener;
         private AudioSource audioSource;
         public AudioSource BGMSource
@@ -283,7 +282,6 @@ public class SoundManager
 
         private List<GameObject> loopSEList = new List<GameObject>();
         private List<GameObject> refleshSEList = new List<GameObject>();
-        private bool _IsStopping = false;
         static MixerVolumeClass[] mixerVolumeClass = new MixerVolumeClass[System.Enum.GetNames(typeof(MixerExposedParameter)).Length];
         static bool[] isCompressedVolume = new bool[System.Enum.GetNames(typeof(MixerExposedParameter)).Length];
         static int[] volumeLevel = new int[System.Enum.GetNames(typeof(MixerExposedParameter)).Length];

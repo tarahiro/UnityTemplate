@@ -7,26 +7,6 @@ public class Const
     // 計算用に使う定数
     public const float Sqrt2per2 = 0.70710678118f;
 
-    // デフォルト値
-    public const float DefaultAnimationDurationLong = 16.0f / 60.0f;
-    public const float DefaultAnimationDuration = 8.0f / 60.0f;
-    public const float DefaultAnimationDurationShort = 4.0f / 60.0f;
-    public enum AnimationDurationType
-    {
-        Normal,
-        Short,
-        Long,
-    };
-    public static float GetAnimationDuration(AnimationDurationType type)
-    {
-        switch (type)
-        {
-            default:
-            case AnimationDurationType.Normal: return DefaultAnimationDuration;
-            case AnimationDurationType.Short: return DefaultAnimationDurationShort;
-            case AnimationDurationType.Long: return DefaultAnimationDurationLong;
-        }
-    }
 
     public static void RandomIndexList(out List<int> o_indexList, int t_maxNumber)
     {

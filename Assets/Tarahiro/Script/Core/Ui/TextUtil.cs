@@ -5,7 +5,7 @@ using TMPro;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 
-namespace Tarahiro.Text
+namespace Tarahiro.Ui
 {
     public static class TextUtil
     {
