@@ -12,8 +12,8 @@ namespace FakeProject.Editor
 {
 #if UNITY_EDITOR
     //---プロジェクト作成時にやること---//
-    //namespaceの"project"部分を変更。（gaw[yymmdd]とか）
-    //アセンブリ構成に応じて、using部分を追加（gaw[yymmdd].modelとか）
+    //namespaceの"FakeProject"部分を変更。（gaw[yymmdd]とか）
+    //アセンブリ構成に応じて、using部分を追加（gaw[yymmdd].model,gaw[yymmdd].Model.MasterData 等 ）
 
     //---クラス作成時にやること---//
     //"Template" を置換

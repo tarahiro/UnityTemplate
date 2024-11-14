@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Tarahiro;
-using Tarahiro.Sound;
 using Tarahiro.Editor.XmlImporter;
+using Tarahiro.Sound;
 using System.Collections.Generic;
 using UnityEditor;
 using Tarahiro.MasterData;
+using System.Xml.Serialization;
 
-namespace Tarahiro.Sound.Editor
+namespace Tarahiro.Editor
 {
+#if UNITY_EDITOR
     internal sealed class SeImporter
     {
         const string c_XmlPath = "ImportData/Se/Se.xml";
@@ -39,7 +41,7 @@ namespace Tarahiro.Sound.Editor
 
         public static void Import()
         {
-            var book = XmlImporter.ImportWorkbook(c_XmlPath);
+            var book = XmlImporter.XmlImporter.ImportWorkbook(c_XmlPath);
 
             var SeDataList = new List<SeMasterData.Record>();
 
@@ -65,7 +67,8 @@ namespace Tarahiro.Sound.Editor
             }
 
             // データ出力
-            XmlImporter.ExportOrderedDictionary<SeMasterData, SeMasterData.Record, IMasterDataRecord<ISeMaster>>(SeMasterData.c_DataPath, SeDataList);
+            XmlImporter.XmlImporter.ExportOrderedDictionary<SeMasterData, SeMasterData.Record, IMasterDataRecord<ISeMaster>>(SeMasterData.c_DataPath, SeDataList);
         }
     }
+#endif
 }

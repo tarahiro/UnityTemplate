@@ -6,7 +6,7 @@ using FakeProject;
 namespace FakeProject.MasterData
 {
     //---プロジェクト作成時にやること---//
-    //namespaceの"project"部分を変更。（gaw[yymmdd].modelとか）
+    //namespaceの"project"部分を変更。（gaw[yymmdd].Modelとか）
 
     //---クラス作成時にやること---//
     //"Template" を置換
