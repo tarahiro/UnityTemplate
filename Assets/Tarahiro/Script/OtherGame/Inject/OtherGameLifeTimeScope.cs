@@ -18,7 +18,7 @@ namespace Tarahiro.OtherGame.Inject
         protected override void Configure(IContainerBuilder builder)
         {
             //OtherGame
-            builder.Register<OtherGameModel>(Lifetime.Singleton).WithParameter<string>("gaw241117").AsImplementedInterfaces();
+            builder.Register<OtherGameModel>(Lifetime.Singleton).WithParameter<string>("FakeProjectCode").AsImplementedInterfaces();
             builder.RegisterComponentInHierarchy<OtherGameAbstructView>().AsImplementedInterfaces();
             builder.RegisterComponentInHierarchy<OtherGameMenuView>().AsImplementedInterfaces();
             builder.RegisterComponentInHierarchy<OtherGameDetailView>().AsImplementedInterfaces();

@@ -42,7 +42,6 @@ namespace Tarahiro.OtherGame
 
         public void SelectOtherGame(string id)
         {
-            Log.DebugLog(id);
             Application.OpenURL(_masterDataProvider.TryGetFromId(id).GetMaster().StoreUrlJp);
         }
     }

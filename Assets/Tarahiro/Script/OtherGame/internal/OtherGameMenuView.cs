@@ -42,7 +42,6 @@ namespace Tarahiro.OtherGame
                 var v = factory.Invoke(argsList[i]);
                 v.transform.parent = _iconRoot;
                 UiUtil.SetUiComponentOnAlinedAnchoredPosition(_iconRoot.GetComponent<RectTransform>(), v.transform.GetComponent<RectTransform>(),c_iconMergin,i,iconCount);
-              //  v.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.right * (i - (iconCount - 1)) * (v.transform.GetComponent<RectTransform>().sizeDelta.x + c_iconMergin);
                 v.Decided.Subscribe(selected).AddTo(disposables);
                 var count = i;
                 v.Button.onClick.AddListener(delegate { ChangeFocus(count); });
@@ -111,7 +110,6 @@ namespace Tarahiro.OtherGame
 
         void ChangeFocus(int nextIndex)
         {
-            Log.DebugLog(nextIndex);
             UnFocus();
             _index = nextIndex;
             Focus();
