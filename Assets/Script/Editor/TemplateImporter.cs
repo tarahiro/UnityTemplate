@@ -6,7 +6,8 @@ using Tarahiro.Editor.XmlImporter;
 using System.Collections.Generic;
 using UnityEditor;
 using FakeProject;
-using FakeProject.MasterData;
+using FakeProject.Model;
+using FakeProject.Model.MasterData;
 
 namespace FakeProject.Editor
 {
