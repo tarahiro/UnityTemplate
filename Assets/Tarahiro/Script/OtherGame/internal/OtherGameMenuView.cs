@@ -41,6 +41,7 @@ namespace Tarahiro.OtherGame
             {
                 var v = factory.Invoke(argsList[i]);
                 v.transform.parent = _iconRoot;
+                v.transform.localScale = Vector3.one;
                 UiUtil.SetUiComponentOnAlinedAnchoredPosition(_iconRoot.GetComponent<RectTransform>(), v.transform.GetComponent<RectTransform>(),c_iconMergin,i,iconCount);
                 v.Decided.Subscribe(selected).AddTo(disposables);
                 var count = i;

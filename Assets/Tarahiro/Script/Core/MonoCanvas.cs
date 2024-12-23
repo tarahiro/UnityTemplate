@@ -19,7 +19,7 @@ namespace Tarahiro
 
         private void Awake()
         {
-            _canvas = Instantiate(Resources.Load<Canvas>(prefabName));
+            _canvas = Instantiate(ResourceUtil.GetResource<Canvas>(prefabName));
             DontDestroyOnLoad(_canvas);
             _canvasScaler = _canvas.GetComponent<CanvasScaler>();
             _canvasScaler.referenceResolution = Const.Resolution;

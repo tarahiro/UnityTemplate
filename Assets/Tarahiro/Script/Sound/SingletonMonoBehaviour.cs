@@ -4,6 +4,7 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 {
     protected SingletonMonoBehaviour() { }
     private static T mInstance;
+
     public static T Instance
     {
         get

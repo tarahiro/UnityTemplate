@@ -23,19 +23,19 @@ public class SoundManager
 /// </summary>
     public static GameObject PlaySE(string seLabel, MixerLabel MixerName = MixerLabel.EventSE, bool IsLoop = false)
     {
-        return SoundMgr.Instance.dummyInstantiate(Resources.Load<GameObject>("SoundManager/" + MixerDicionary[MixerName] + "Source"), Resources.Load<AudioClip>(SoundMgr.Instance.seMasterDataProvider.TryGetFromId(seLabel).GetMaster().SePath), IsLoop);
+        return SoundMgr.Instance.dummyInstantiate(ResourceUtil.GetResource<GameObject>("SoundManager/" + MixerDicionary[MixerName] + "Source"), ResourceUtil.GetResource<AudioClip>(SoundMgr.Instance.seMasterDataProvider.TryGetFromId(seLabel).GetMaster().SePath), IsLoop);
     }
 
     public static GameObject PlaySEWithChangePitch(string seLabel, MixerLabel MixerName = MixerLabel.EventSE, bool IsLoop = false, float ChangePitch = SoundMgr.changePitch)
     {
 
-        return SoundMgr.Instance.dummyInstantiateWithChangePitch(Resources.Load<GameObject>("SoundManager/" + MixerDicionary[MixerName] + "Source"), Resources.Load<AudioClip>(SoundMgr.Instance.seMasterDataProvider.TryGetFromId(seLabel).GetMaster().SePath), IsLoop,ChangePitch);
+        return SoundMgr.Instance.dummyInstantiateWithChangePitch(ResourceUtil.GetResource<GameObject>("SoundManager/" + MixerDicionary[MixerName] + "Source"), ResourceUtil.GetResource<AudioClip>(SoundMgr.Instance.seMasterDataProvider.TryGetFromId(seLabel).GetMaster().SePath), IsLoop,ChangePitch);
 
     }
 
     public static void PlayBGM(string BGMName,int channelId = 0, bool IsLoop = true)
     {
-        SoundMgr.Instance.PlayBGM(Resources.Load<AudioClip>(bgmString + BGMName),channelId, IsLoop);
+        SoundMgr.Instance.PlayBGM(ResourceUtil.GetResource<AudioClip>(bgmString + BGMName),channelId, IsLoop);
     }
 
 
@@ -89,12 +89,12 @@ public class SoundManager
 
     public static GameObject PlaySEWithLoop(string seLabel, MixerLabel MixerName = MixerLabel.EventSE)
     {
-        return SoundMgr.Instance.dummyInstantiateLoopSE(Resources.Load<GameObject>("SoundManager/" + MixerDicionary[MixerName] + "Source"), Resources.Load<AudioClip>(SoundMgr.Instance.seMasterDataProvider.TryGetFromId(seLabel).GetMaster().SePath));
+        return SoundMgr.Instance.dummyInstantiateLoopSE(ResourceUtil.GetResource<GameObject>("SoundManager/" + MixerDicionary[MixerName] + "Source"), ResourceUtil.GetResource<AudioClip>(SoundMgr.Instance.seMasterDataProvider.TryGetFromId(seLabel).GetMaster().SePath));
     }
 
     public static GameObject PlayRefleshSE(string seLabel, MixerLabel MixerName = MixerLabel.EventSE, bool IsLoop = false)
     {
-        return SoundMgr.Instance.dummyInstantiateRefleshSE(Resources.Load<GameObject>("SoundManager/" + MixerDicionary[MixerName] + "Source"), Resources.Load<AudioClip>(SoundMgr.Instance.seMasterDataProvider.TryGetFromId(seLabel).GetMaster().SePath), IsLoop);
+        return SoundMgr.Instance.dummyInstantiateRefleshSE(ResourceUtil.GetResource<GameObject>("SoundManager/" + MixerDicionary[MixerName] + "Source"), ResourceUtil.GetResource<AudioClip>(SoundMgr.Instance.seMasterDataProvider.TryGetFromId(seLabel).GetMaster().SePath), IsLoop);
     }
 
 
@@ -134,7 +134,7 @@ public class SoundManager
 
     public static GameObject PlayBGMObj(string BGMName, bool IsLoop = false)
     {
-        return SoundMgr.Instance.dummyInstantiateBGM(Resources.Load<GameObject>("SoundManager/BGMSource"), Resources.Load<AudioClip>(bgmString + BGMName), IsLoop);
+        return SoundMgr.Instance.dummyInstantiateBGM(ResourceUtil.GetResource<GameObject>("SoundManager/BGMSource"), ResourceUtil.GetResource<AudioClip>(bgmString + BGMName), IsLoop);
     }
 
     public static AudioSource BGMSource()
@@ -241,12 +241,12 @@ public class SoundManager
         {
             base.Awake();
             audioListener = gameObject.AddComponent<AudioListener>();
-            audioSource = Instantiate(Resources.Load<GameObject>("SoundManager/BGMSource"), transform).GetComponent<AudioSource>();
-            audioSourceSub = Instantiate(Resources.Load<GameObject>("SoundManager/BGMSubSource"), transform).GetComponent<AudioSource>();
+            audioSource = Instantiate(ResourceUtil.GetResource<GameObject>("SoundManager/BGMSource"), transform).GetComponent<AudioSource>();
+            audioSourceSub = Instantiate(ResourceUtil.GetResource<GameObject>("SoundManager/BGMSubSource"), transform).GetComponent<AudioSource>();
 
             for (int i = 0; i < System.Enum.GetNames(typeof(MixerExposedParameter)).Length; i++)
             {
-                mixerVolumeClass[i] = Instantiate(Resources.Load<MixerVolumeClass>("SoundManager/MixerVolumeClass/MixerVolumeClass" + i), transform);
+                mixerVolumeClass[i] = Instantiate(ResourceUtil.GetResource<MixerVolumeClass>("SoundManager/MixerVolumeClass/MixerVolumeClass" + i), transform);
             }
 
             //VolumeLevel初期化
@@ -405,7 +405,8 @@ public class SoundManager
             {
                 if (loopSEList[i] != null)
                 {
-                    loopSEList[i].GetComponent<AudioSource>().loop = false;
+                    Destroy(loopSEList[i].gameObject);
+                    loopSEList.RemoveAt(i);
                 }
             }
             loopSEList = new List<GameObject>();

@@ -15,11 +15,12 @@ namespace Tarahiro.OtherGame.MasterData
     //ITemplateMasterに合わせてフィールドを追加
     public class OtherGameMasterData : MasterDataOrderedDictionary<OtherGameMasterData.Record, IMasterDataRecord<IOtherGameMaster>>
     {
-        public const string c_DataPath = "Data/OtherGame";
+        public const string c_DataName = "OtherGame";
 
         [Serializable]
         public class Record : IMasterDataRecord<IOtherGameMaster>, IOtherGameMaster
         {
+
             public Record(int index, string id)
             {
                 m_Index = index;

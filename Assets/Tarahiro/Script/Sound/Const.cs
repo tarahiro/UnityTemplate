@@ -8,6 +8,7 @@ public class Const
     public const float Sqrt2per2 = 0.70710678118f;
 
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     public static void RandomIndexList(out List<int> o_indexList, int t_maxNumber)
     {
         List<int> t_intList = new List<int>();
@@ -37,6 +38,8 @@ public class Const
         Accel,
         Linear
     }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     public static float Interpolate(float ratio, InterpolateType type)
     {
         switch (type)
@@ -55,15 +58,19 @@ public class Const
     }
 
     // 定義域0.0～1.0の補間関数
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     public static float Accel(float x)
     {
         return x * x;
     }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     public static float Decel(float x)
     {
         return 1.0f - (1.0f - x) * (1.0f - x);
     }
     // 加速→減速
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     public static float AccelDecel(float x)
     {
         if (x < 0.5f)
@@ -77,6 +84,7 @@ public class Const
     }
 
     // 減速→加速
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     public static float DecelAccel(float x)
     {
         if (x < 0.5f)

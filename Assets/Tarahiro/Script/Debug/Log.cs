@@ -56,7 +56,7 @@ namespace Tarahiro
 
         // DEBUG時のみログを流す
         [Conditional("ENABLE_COMMENT")]
-        public static void DebugLogComment(object message)
+        public static void Comment(object message)
         {
             UnityEngine.Debug.Log(message);
         }

@@ -1,6 +1,6 @@
 ﻿namespace Tarahiro.Editor
 {
-	internal static class EditorConst
+	public static class EditorConst
 	{
 		/// <summary>
 		/// Tarahiro拡張メニューのPriority定義
@@ -13,5 +13,9 @@
 			ReferenceChecker = 300,
             Directory = 400,
 		}
+
+		public const string c_XmlPathPrefix = "ImportData/";
+        public const string c_XmlPathSuffix= ".xml";
+        public const string c_SheetName = "Script";
 	}
 }

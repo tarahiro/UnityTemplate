@@ -16,13 +16,13 @@ namespace Tarahiro.TGrid
 
         void ReadTilemap()
         {
-            Log.DebugLogComment("TileMap読み込み");
+            Log.Comment("TileMap読み込み");
 
             var m_TilemapArray = m_Grid.GetComponentsInChildren<Tilemap>();
 
            　var query =  m_TilemapArray.OrderBy(t => t.GetComponent<TilemapRenderer>().sortingOrder);
 
-            Log.DebugLogComment("Order順に並べ替える");
+            Log.Comment("Order順に並べ替える");
             foreach (var tilemap in query)
             {
                 _tileMapList.Add(tilemap);
@@ -31,7 +31,7 @@ namespace Tarahiro.TGrid
 
         public List<Tilemap> GetTilemaps()
         {
-            Log.DebugLogComment("TileMap返送");
+            Log.Comment("TileMap返送");
             if (_tileMapList.Count == 0)
             {
                 ReadTilemap();

@@ -46,9 +46,9 @@ namespace Tarahiro.OtherGame
             _title.text = args.TitleName;
             _genre.text = args.GenreName;
             _description.text = args.Description;
-            _screenShotCenter.sprite = Resources.Load<Sprite>(args.ScreenShotCenterPath);
-            _screenShotRightTop.sprite = Resources.Load<Sprite>(args.ScreenShotRightTopPath);
-            _screenShotRightBottom.sprite = Resources.Load<Sprite>(args.ScreenShotRightBottomPath);
+            _screenShotCenter.sprite = ResourceUtil.GetResource<Sprite>(args.ScreenShotCenterPath);
+            _screenShotRightTop.sprite = ResourceUtil.GetResource<Sprite>(args.ScreenShotRightTopPath);
+            _screenShotRightBottom.sprite = ResourceUtil.GetResource<Sprite>(args.ScreenShotRightBottomPath);
         }
 
         public void OnClick()

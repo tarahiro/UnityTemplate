@@ -5,11 +5,12 @@ using Tarahiro.MasterData;
 using Tarahiro.Editor.XmlImporter;
 using System.Collections.Generic;
 using UnityEditor;
-using FakeProject;
-using FakeProject.Model;
-using FakeProject.Model.MasterData;
+using gaw241201;
+using gaw241201.Model;
+using gaw241201.Model.MasterData;
+using Tarahiro.Editor;
 
-namespace FakeProject.Editor
+namespace gaw241201.Editor
 {
 #if UNITY_EDITOR
     //---プロジェクト作成時にやること---//
@@ -21,8 +22,6 @@ namespace FakeProject.Editor
     //ITemplateMasterに合わせてフィールドを追加
     internal sealed class TemplateImporter
     {
-        const string c_XmlPath = "ImportData/Template/Template.xml";
-        const string c_SheetName = "Script";
         enum Columns
         {
             Index = 0,
@@ -48,14 +47,14 @@ namespace FakeProject.Editor
 
         public static void Import()
         {
-            var book = XmlImporter.ImportWorkbook(c_XmlPath);
+            var book = XmlImporter.ImportWorkbook(EditorUtil.XmlPath(TemplateMasterData.c_DataName, TemplateMasterData.c_DataName));
 
             var TemplateDataList = new List<TemplateMasterData.Record>();
 
-            var sheet = book.TryGetWorksheet(c_SheetName);
+            var sheet = book.TryGetWorksheet(EditorConst.c_SheetName);
             if (sheet == null)
             {
-                Log.DebugWarning($"シート: {c_SheetName} が見つかりませんでした。");
+                Log.DebugWarning($"シート: {EditorConst.c_SheetName} が見つかりませんでした。");
             }
             else
             {
@@ -74,7 +73,7 @@ namespace FakeProject.Editor
             }
 
             // データ出力
-            XmlImporter.ExportOrderedDictionary<TemplateMasterData, TemplateMasterData.Record, IMasterDataRecord<ITemplateMaster>>(TemplateMasterData.c_DataPath, TemplateDataList);
+            XmlImporter.ExportOrderedDictionary<TemplateMasterData, TemplateMasterData.Record, IMasterDataRecord<ITemplateMaster>>(MasterDataConst.DataPath + TemplateMasterData.c_DataName, TemplateDataList);
         }
     }
 #endif

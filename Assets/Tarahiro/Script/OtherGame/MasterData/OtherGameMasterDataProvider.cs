@@ -12,6 +12,9 @@ namespace Tarahiro.OtherGame.MasterData
     //"Template" を置換
     public class OtherGameMasterDataProvider : MasterDataProvider<OtherGameMasterData.Record,IMasterDataRecord<IOtherGameMaster>>, IOtherGameMasterDataProvider
     {
-        protected override string m_pathName => "Data/OtherGame";
+        public OtherGameMasterDataProvider() : base()
+        {
+            Load(OtherGameMasterData.c_DataName);
+        }
     }
 }

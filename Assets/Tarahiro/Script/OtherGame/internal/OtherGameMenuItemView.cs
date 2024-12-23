@@ -29,7 +29,7 @@ namespace Tarahiro.OtherGame
         {
             _id = args.Id;
 
-            var v = factory.Invoke(Resources.Load<Sprite>(args.IconPath));
+            var v = factory.Invoke(ResourceUtil.GetResource<Sprite>(args.IconPath));
             v.transform.parent = transform;
             v.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
             Button = v.Button;

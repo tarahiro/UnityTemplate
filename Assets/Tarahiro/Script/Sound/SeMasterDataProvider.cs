@@ -4,8 +4,11 @@ using Tarahiro.MasterData;
 
 namespace Tarahiro.Sound
 {
-    public class SeMasterDataProvider : MasterDataProvider<SeMasterData.Record,IMasterDataRecord<ISeMaster>>, ISeMasterDataProvider
+    public class SeMasterDataProvider : MasterDataProvider<SeMasterData.Record, IMasterDataRecord<ISeMaster>>, ISeMasterDataProvider
     {
-        protected override string m_pathName => "Data/Se";
+        public SeMasterDataProvider() : base()
+        {
+            Load(SeMasterData.c_DataName);
+        }
     }
 }

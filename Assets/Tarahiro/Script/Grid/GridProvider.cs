@@ -23,7 +23,7 @@ namespace Tarahiro.TGrid
 
         public void Initialize()
         {
-            Log.DebugLogComment("GridProvider初期化");
+            Log.Comment("GridProvider初期化");
 
             m_TilemapList = _gridReader.GetTilemaps();
 

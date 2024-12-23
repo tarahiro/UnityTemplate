@@ -16,7 +16,7 @@ namespace Tarahiro.TInput
 
         private void Start()
         {
-            _cursorTransform = Instantiate(Resources.Load<Transform>(c_prefabName));
+            _cursorTransform = Instantiate(ResourceUtil.GetResource<Transform>(c_prefabName));
             TCanvas.GetInstance().RegisterInstance(_cursorTransform , Const.OrderOnMonoCanvas.Cursor);
         }
 

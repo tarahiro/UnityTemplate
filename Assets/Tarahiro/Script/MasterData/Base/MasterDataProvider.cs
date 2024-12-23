@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Tarahiro;
+using VContainer;
 
 namespace Tarahiro.MasterData
 {
@@ -11,11 +12,18 @@ namespace Tarahiro.MasterData
     {
         protected MasterDataOrderedDictionary<DataType, InterfaceType> m_Dictionary;
 
-        protected virtual string m_pathName { get; }
 
+
+        [Inject]
         public MasterDataProvider()
         {
-            m_Dictionary = Resources.Load<MasterDataOrderedDictionary<DataType,InterfaceType>>(m_pathName);
+        }
+
+        protected void Load(string filePath)
+        {
+            string path = MasterDataConst.DataPath + filePath;
+            Log.Comment(path + "のData読み込み");
+            m_Dictionary = ResourceUtil.GetResource<MasterDataOrderedDictionary<DataType, InterfaceType>>(path);
         }
 
         public InterfaceType TryGetFromIndex(int index)

@@ -8,7 +8,7 @@ namespace Tarahiro.Sound
 {
     public class SeMasterData : MasterDataOrderedDictionary<SeMasterData.Record, IMasterDataRecord<ISeMaster>>
     {
-        public const string c_DataPath = "Data/Se";
+        public const string c_DataName = "Se";
 
         [Serializable]
         public class Record : IMasterDataRecord<ISeMaster>, ISeMaster

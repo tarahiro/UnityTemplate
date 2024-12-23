@@ -31,8 +31,9 @@ namespace Tarahiro.OtherGame
             int iconCount = Math.Min(spritePathList.Count, OtherGameConst.c_iconNumber);
             for (int i = 0; i < spritePathList.Count && i < OtherGameConst.c_iconNumber; i++)
             {
-                var v = factory.Invoke(Resources.Load<Sprite>(spritePathList[i]));
+                var v = factory.Invoke(ResourceUtil.GetResource<Sprite>(spritePathList[i]));
                 v.transform.parent = _iconRoot;
+                v.transform.localScale = Vector3.one;
                 UiUtil.SetUiComponentOnAlinedAnchoredPosition(_iconRoot, v.transform.GetComponent<RectTransform>(), c_iconMergin, i, iconCount);
                 int count = i;
                 v.Button.onClick.AddListener(() => OnClickIcon(count));

@@ -13,8 +13,10 @@ namespace Tarahiro.Editor
 #if UNITY_EDITOR
     internal sealed class SeImporter
     {
+        /*
         const string c_XmlPath = "ImportData/Se/Se.xml";
         const string c_SheetName = "Script";
+        */
         enum Columns
         {
             Index = 0,
@@ -41,14 +43,14 @@ namespace Tarahiro.Editor
 
         public static void Import()
         {
-            var book = XmlImporter.XmlImporter.ImportWorkbook(c_XmlPath);
+            var book = XmlImporter.XmlImporter.ImportWorkbook(EditorUtil.XmlPath(SeMasterData.c_DataName, SeMasterData.c_DataName));
 
             var SeDataList = new List<SeMasterData.Record>();
 
-            var sheet = book.TryGetWorksheet(c_SheetName);
+            var sheet = book.TryGetWorksheet(EditorConst.c_SheetName);
             if (sheet == null)
             {
-                Log.DebugWarning($"シート: {c_SheetName} が見つかりませんでした。");
+                Log.DebugWarning($"シート: {EditorConst.c_SheetName} が見つかりませんでした。");
             }
             else
             {
@@ -67,7 +69,7 @@ namespace Tarahiro.Editor
             }
 
             // データ出力
-            XmlImporter.XmlImporter.ExportOrderedDictionary<SeMasterData, SeMasterData.Record, IMasterDataRecord<ISeMaster>>(SeMasterData.c_DataPath, SeDataList);
+            XmlImporter.XmlImporter.ExportOrderedDictionary<SeMasterData, SeMasterData.Record, IMasterDataRecord<ISeMaster>>(MasterDataConst.DataPath + SeMasterData.c_DataName, SeDataList);
         }
     }
 #endif
