@@ -5,15 +5,13 @@ using System.Threading.Tasks;
 using Tarahiro;
 using UniRx;
 using UnityEngine;
+using VContainer;
+using MessagePipe;
 
-namespace Tarahiro.UI
+namespace Tarahiro
 {
-    public interface IMenuItemView : ITransform
+    public interface ILanguageEventPublisher
     {
-        void Focus();
-
-        void UnFocus();
-
-        void Decide();
+        void PublishEvent(int languageIndex);
     }
 }

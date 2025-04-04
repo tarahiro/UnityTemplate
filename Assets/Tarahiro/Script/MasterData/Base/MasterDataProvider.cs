@@ -22,7 +22,6 @@ namespace Tarahiro.MasterData
         protected void Load(string filePath)
         {
             string path = MasterDataConst.DataPath + filePath;
-            Log.Comment(path + "のData読み込み");
             m_Dictionary = ResourceUtil.GetResource<MasterDataOrderedDictionary<DataType, InterfaceType>>(path);
         }
 

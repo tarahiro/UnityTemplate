@@ -31,7 +31,13 @@
 		}
 
 		// フラグを取得（空欄じゃなけれればtrue）
-		public bool Bool => !IsEmpty;
+		public bool Bool
+		{
+			get
+			{
+				return m_Content == "1";
+			}
+		}
 
 		// 空欄かどうか取得
 		public bool IsEmpty { get { return string.IsNullOrEmpty(m_Content); } }

@@ -6,14 +6,10 @@ using Tarahiro;
 using UniRx;
 using UnityEngine;
 
-namespace Tarahiro.UI
+namespace Tarahiro
 {
-    public interface IMenuItemView : ITransform
+    public interface ILanguageNoticable
     {
-        void Focus();
-
-        void UnFocus();
-
-        void Decide();
+        void SetLanguage(int languageIndex);
     }
 }

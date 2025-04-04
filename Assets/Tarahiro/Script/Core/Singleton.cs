@@ -22,6 +22,7 @@ namespace Tarahiro
 
         public void Initialize()
         {
+            Log.DebugLog("Initialize");
             TryGetInstance();
         }
 
@@ -36,5 +37,7 @@ namespace Tarahiro
                 GameObject.DontDestroyOnLoad(g);
             }
         }
+
+       
     }
 }

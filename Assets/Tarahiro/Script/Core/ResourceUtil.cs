@@ -19,6 +19,11 @@ namespace Tarahiro
             return obj;
         }
 
+        public static bool IsExist(string path)
+        {
+            return Resources.Load<GameObject>(path) != null;
+        }
+
         public static string ResourcePath()
         {
             return "Assets/Resources/";

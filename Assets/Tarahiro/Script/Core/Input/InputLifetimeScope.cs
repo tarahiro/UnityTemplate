@@ -13,6 +13,8 @@ namespace Tarahiro.TInput
                 //Touch
                 entryPoints.Add<TTouch>();
                 entryPoints.Add<TFlick>();
+               // entryPoints.Add<TInput>();
+               // entryPoints.Add<Tkey>();
                 entryPoints.Add<TCanvas>();
 
 #if ENABLE_VIRTUAL_CURSOR

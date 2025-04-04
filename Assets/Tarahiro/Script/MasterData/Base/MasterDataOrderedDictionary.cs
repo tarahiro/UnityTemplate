@@ -29,7 +29,7 @@ namespace Tarahiro.MasterData
 			{
 				return m_List[index];
 			}
-			Log.DebugAssert(index.ToString() + "の値がDictionaryに存在しません");
+			Log.DebugWarning(index.ToString() + "の値がDictionaryに存在しません");
 			return default;
 		}
 
@@ -40,7 +40,7 @@ namespace Tarahiro.MasterData
 			{
 				return m_List[m_Dictionary[id]];
             }
-            Log.DebugAssert(id + "の値がDictionaryに存在しません");
+            Log.DebugWarning(id + "の値がDictionaryに存在しません");
             return default;
 		}
 
