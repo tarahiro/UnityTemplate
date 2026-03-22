@@ -22,9 +22,36 @@ namespace Tarahiro.MasterData
         [SerializeField] protected DataType[] m_List = null;
 		[SerializeField] protected Dictionary<string, int> m_Dictionary = null;
 
+		private void EnsureInitialized()
+		{
+			if (m_List == null)
+			{
+				m_List = Array.Empty<DataType>();
+			}
+
+			if (m_Dictionary == null || m_Dictionary.Count != m_List.Length)
+			{
+				m_Dictionary = new Dictionary<string, int>(m_List.Length);
+				for (int i = 0; i < m_List.Length; i++)
+				{
+					var data = m_List[i];
+					if (data == null || string.IsNullOrEmpty(data.Id))
+					{
+						continue;
+					}
+
+					if (!m_Dictionary.ContainsKey(data.Id))
+					{
+						m_Dictionary.Add(data.Id, data.Index);
+					}
+				}
+			}
+		}
+
 		// Indexからデータを取得
 		public InterfaceType TryGetFromIndex(int index)
 		{
+			EnsureInitialized();
 			if (index >= 0 && index < m_List.Length)
 			{
 				return m_List[index];
@@ -36,6 +63,7 @@ namespace Tarahiro.MasterData
 		// Idからデータを取得
 		public InterfaceType TryGetFromId(string id)
 		{
+			EnsureInitialized();
 			if (m_Dictionary.ContainsKey(id))
 			{
 				return m_List[m_Dictionary[id]];
@@ -45,10 +73,24 @@ namespace Tarahiro.MasterData
 		}
 
 		// データの数を取得
-		public int Count => m_List.Length;
+		public int Count
+		{
+			get
+			{
+				EnsureInitialized();
+				return m_List.Length;
+			}
+		}
 
 		// データの列挙子を取得
-		public IEnumerable<InterfaceType> Enumerable => m_List.Select<DataType, InterfaceType>(data => data);
+		public IEnumerable<InterfaceType> Enumerable
+		{
+			get
+			{
+				EnsureInitialized();
+				return m_List.Select<DataType, InterfaceType>(data => data);
+			}
+		}
 
         // データをロードする
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -78,9 +120,23 @@ namespace Tarahiro.MasterData
 		public void OnAfterDeserialize()
 		{
 			m_Dictionary = new Dictionary<string, int>();
+			if (m_List == null)
+			{
+				m_List = Array.Empty<DataType>();
+				return;
+			}
+
 			foreach (var data in m_List)
 			{
-				m_Dictionary.Add(data.Id, data.Index);
+				if (data == null || string.IsNullOrEmpty(data.Id))
+				{
+					continue;
+				}
+
+				if (!m_Dictionary.ContainsKey(data.Id))
+				{
+					m_Dictionary.Add(data.Id, data.Index);
+				}
 			}
 		}
 	}

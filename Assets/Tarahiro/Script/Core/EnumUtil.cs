@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Tarahiro
 {
-    public static class EnumUtil
+    public static class UtilEnum
     { 
         /// <summary>
       /// 入力されたkeyが設定されたタイプに含まれるか

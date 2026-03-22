@@ -43,7 +43,7 @@ namespace Tarahiro.Editor
         {
             List<string> textString = new List<string>();
 
-            for(int i = 0; i < EnumUtil.GetTypeNum<T>(); i++)
+            for(int i = 0; i < UtilEnum.GetTypeNum<T>(); i++)
             {
                 textString.Add(sheet[row, startColumn + i].String);
             }

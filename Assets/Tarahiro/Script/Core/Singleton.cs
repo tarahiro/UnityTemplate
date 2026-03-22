@@ -13,7 +13,6 @@ namespace Tarahiro
     {
         protected static T _instance;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         public static T GetInstance()
         {
             TryGetInstance();
@@ -26,7 +25,6 @@ namespace Tarahiro
             TryGetInstance();
         }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         protected static void TryGetInstance()
         {
             if (_instance == null)

@@ -11,7 +11,7 @@ using MessagePipe;
 using Tarahiro.Ui;
 using UnityEditor.VersionControl;
 
-namespace gaw241201.View
+namespace Tarahiro
 {
     public class TranslationTextPresenter : IPostInitializable
     {

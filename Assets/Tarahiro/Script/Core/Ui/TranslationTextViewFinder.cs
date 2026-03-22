@@ -9,7 +9,7 @@ using VContainer.Unity;
 using UniRx;
 using Tarahiro.Ui;
 
-namespace gaw241201.View
+namespace Tarahiro
 {
     public class TranslationTextViewFinder
     {

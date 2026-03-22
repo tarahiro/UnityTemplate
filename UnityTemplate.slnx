@@ -1,0 +1,21 @@
+﻿<Solution>
+  <Project Path="UniRx.csproj" />
+  <Project Path="Tarahiro.TGrid.csproj" />
+  <Project Path="Tarahiro.csproj" />
+  <Project Path="Tarahiro.OtherGame.csproj" />
+  <Project Path="Tarahiro.View.csproj" />
+  <Project Path="Tarahiro.Editor.csproj" />
+  <Project Path="Tarahiro.TInput.csproj" />
+  <Project Path="UniRx.Examples.csproj" />
+  <Project Path="Tarahiro.Ui.csproj" />
+  <Project Path="FakeProject.Model.MasterData.csproj" />
+  <Project Path="Tarahiro.OtherGame.Inject.csproj" />
+  <Project Path="Tarahiro.Inject.csproj" />
+  <Project Path="FakeProject.csproj" />
+  <Project Path="FakeProject.Inject.csproj" />
+  <Project Path="FakeProject.Model.csproj" />
+  <Project Path="Tarahiro.OtherGame.Editor.csproj" />
+  <Project Path="Tarahiro.OtherGame.MasterData.csproj" />
+  <Project Path="FakeProject.Editor.csproj" />
+  <Project Path="Tarahiro.Text.Extensions.csproj" />
+</Solution>
