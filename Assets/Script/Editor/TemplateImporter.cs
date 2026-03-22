@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.IO;
 using UnityEngine;
 using Tarahiro;
 using Tarahiro.MasterData;
@@ -20,6 +22,8 @@ namespace gaw241201.Editor
     //---クラス作成時にやること---//
     //"Template" を置換
     //ITemplateMasterに合わせてフィールドを追加
+
+    [InitializeOnLoad]
     internal sealed class TemplateImporter
     {
         enum Columns
@@ -27,6 +31,44 @@ namespace gaw241201.Editor
             Index = 0,
             Id = 1,
             Description = 2,
+        }
+
+        static TemplateImporter()
+        {
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        }
+
+        static void OnPlayModeStateChanged(PlayModeStateChange state)
+        {
+            if (state != PlayModeStateChange.ExitingEditMode)
+            {
+                return;
+            }
+
+            ForceImportIfXmlIsNewer();
+        }
+
+        static void ForceImportIfXmlIsNewer()
+        {
+            string xmlPath = EditorUtil.XmlPath(TemplateMasterData.c_DataName, TemplateMasterData.c_DataName);
+            string assetPath = "Assets/Resources/" + MasterDataConst.DataPath + TemplateMasterData.c_DataName + ".asset";
+
+            if (!File.Exists(xmlPath))
+            {
+                return;
+            }
+
+            DateTime xmlTimeUtc = File.GetLastWriteTimeUtc(xmlPath);
+            DateTime assetTimeUtc = File.Exists(assetPath) ? File.GetLastWriteTimeUtc(assetPath) : DateTime.MinValue;
+
+            if (xmlTimeUtc <= assetTimeUtc)
+            {
+                return;
+            }
+
+            Import();
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
 
         //--------------------------------------------------------------------
