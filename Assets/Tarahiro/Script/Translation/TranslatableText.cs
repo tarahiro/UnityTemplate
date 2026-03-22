@@ -28,5 +28,24 @@ namespace Tarahiro
                 translatableTextList.Add(text[i]);
             }
         }
+
+       static TranslatableText _dummyText = null;
+        const string c_dummyString = "***";
+        public static TranslatableText GetDummyText()
+        {
+
+            if(_dummyText == null)
+            {
+                var list = new List<string>();
+                for (int i = 0; i < LanguageConst.AvailableLanguageNumber; i++)
+                {
+                    list.Add(c_dummyString);
+                }
+                _dummyText = new TranslatableText(list.ToArray());
+            }
+
+            return _dummyText;
+
+        }
     }
 }

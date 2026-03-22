@@ -11,49 +11,44 @@ using MessagePipe;
 
 namespace Tarahiro.Ui
 {
-    public class TranslationTextView : MonoBehaviour, ITranslationTextDisplayer
+    public class TranslationTextView : MonoBehaviour, ITranslationTextDisplayer, ITranslationTextView
     {
-        [SerializeField] TextMeshProUGUI tmp;
+        [SerializeField] TMP_Text tmp;
         [SerializeField] List<TMP_FontAsset> font;
         [SerializeField] List<float> fontSizeCoeffFromJp;
 
-        ISubscriber<int> _subscriber;
 
-        int _languageIndex = 0;
         float _initialFontSize;
-
+        ILanguageSubscribable _subscriber;
         bool _isConstructed = false;
 
         [Inject]
-        public void Construct(ISubscriber<int> subscriber)
+        public void Construct(ILanguageSubscribable subscriber)
         {
             if (!_isConstructed)
             {
                 _subscriber = subscriber;
-
-                _subscriber.Subscribe(x => SetLanguage(x));
+                subscriber.LanguageChanged.Subscribe(x => SetLanguage(x)).AddTo(gameObject);
                 _initialFontSize = tmp.fontSize;
 
                 _isConstructed = true;
+                SetLanguage(_subscriber.GetLanguageIndex());
             }
-        }
-
-        void Awake()
-        {
         }
 
         public void SetLanguage(int languageIndex)
         {
-            _languageIndex = languageIndex;
-            tmp.font = font[_languageIndex];
-            tmp.fontSize = _initialFontSize * fontSizeCoeffFromJp[_languageIndex];
+            try
+            {
+                tmp.font = font[languageIndex];
+                tmp.fontSize = _initialFontSize * fontSizeCoeffFromJp[languageIndex];
+            }catch(Exception e)
+            {
+               Log.DebugAssert($"TranslationTextView:SetLanguage gameObject={this.name}で例外が発生しました。\n{e}");
+            }
         }
 
-        public int GetLanguageIndex()
-        {
-            Log.DebugAssert(_languageIndex >= 0);
-            return _languageIndex;
-        }
+        public int GetLanguageIndex() => _subscriber.GetLanguageIndex();
 
     }
 }

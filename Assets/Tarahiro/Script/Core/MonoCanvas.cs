@@ -6,7 +6,6 @@ using Tarahiro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
-using static Const;
 
 namespace Tarahiro
 {
@@ -19,7 +18,7 @@ namespace Tarahiro
 
         private void Awake()
         {
-            _canvas = Instantiate(ResourceUtil.GetResource<Canvas>(prefabName));
+            _canvas = Instantiate(UtilResource.GetResource<Canvas>(prefabName));
             DontDestroyOnLoad(_canvas);
             _canvasScaler = _canvas.GetComponent<CanvasScaler>();
             _canvasScaler.referenceResolution = Const.Resolution;

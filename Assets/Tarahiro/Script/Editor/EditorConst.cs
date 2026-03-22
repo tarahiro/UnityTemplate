@@ -1,4 +1,7 @@
-﻿namespace Tarahiro.Editor
+﻿using System.Linq;
+using System.Collections.Generic;
+
+namespace Tarahiro.Editor
 {
 	public static class EditorConst
 	{
@@ -17,5 +20,32 @@
 		public const string c_XmlPathPrefix = "ImportData/";
         public const string c_XmlPathSuffix= ".xml";
         public const string c_SheetName = "Script";
-	}
+        
+		
+		readonly static List<string> c_correctString = new List<string>()
+		{
+			"○",
+			"〇",
+			"O",
+			"o",
+			"O",
+		};
+
+		public static bool IsCorrect(string ns)
+		{
+			return c_correctString.Contains(ns);
+        }
+
+		static DemoBehaviour _demoBehaviour = null;
+
+		public static bool IsDemo()
+		{
+			if(_demoBehaviour == null)
+			{
+                _demoBehaviour = UtilResource.GetResource<DemoBehaviour>("Editor/DemoBehaviour");
+            }
+
+			return _demoBehaviour.IsDemo;
+        }
+    }
 }

@@ -8,45 +8,36 @@ using UnityEngine;
 using TMPro;
 using VContainer;
 using MessagePipe;
+using gaw241201.View;
 
 namespace Tarahiro.Ui
 {
-    public class EmbeddedTranslationTextView : MonoBehaviour
+    public class EmbeddedTranslationTextView : MonoBehaviour, ITranslationTextViewCore, IEmbeddedTextView
     {
-        TextMeshProUGUI tmp;
-        TranslationTextView textView;
-
-        ISubscriber<int> _subscriber;
+        public string TextId => Id;
         public string Id;
-        ITranslatableText _translatableText = null;
+        protected ITranslationTextViewCore _translationTextViewCore;
+
 
         bool _isConstructed = false;
+
+
         [Inject]
-        public void Construct(ISubscriber<int> subscriber)
+        public void Construct(IPublisher<IEmbeddedTextView> _publisher)
+        {
+            _publisher.Publish(this);
+        }
+
+
+        public void CoreCreate(ITranslationTextViewPureFactory factory)
         {
             if (!_isConstructed)
             {
-                _subscriber = subscriber;
-
-                tmp = GetComponent<TextMeshProUGUI>();
-                textView = GetComponent<TranslationTextView>();
-                textView.Construct(_subscriber);
-
-                _subscriber.Subscribe(x => SetLanguage(x));
+                _translationTextViewCore = factory.Create(GetComponent<TMP_Text>(), GetComponent<TranslationTextView>());
             }
         }
 
-        public void SetTranslatableText(ITranslatableText translatableText)
-        {
-            _translatableText = translatableText;
-        }
+        public virtual void SetTranslatableText(ITranslatableText translatableText) => _translationTextViewCore.SetTranslatableText(translatableText);
 
-        void SetLanguage(int languageIndex)
-        {
-            if(_translatableText != null)
-            {
-                tmp.text = _translatableText.GetTranslatedText(languageIndex);
-            }
-        }
     }
 }

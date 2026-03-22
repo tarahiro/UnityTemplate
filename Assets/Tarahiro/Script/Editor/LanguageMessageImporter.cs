@@ -24,6 +24,7 @@ namespace Tarahiro.Editor
             Index = 0,
             Id = 1,
             MessageStart = 2,
+            IsDemo = MessageStart + LanguageConst.AvailableLanguageNumber*2,
         }
 
         //--------------------------------------------------------------------
@@ -45,7 +46,7 @@ namespace Tarahiro.Editor
         public static void Import()
         {
             var book = XmlImporter.XmlImporter.ImportWorkbook(EditorUtil.XmlPath(LanguageMessageMasterData.c_DataName, LanguageMessageMasterData.c_DataName));
-
+            bool isDemo = EditorConst.IsDemo();
             var LanguageMessageDataList = new List<LanguageMessageMasterData.Record>();
 
             var sheet = book.TryGetWorksheet(EditorConst.c_SheetName);
@@ -61,9 +62,19 @@ namespace Tarahiro.Editor
                     if (int.TryParse(sheet[row, (int)Columns.Index].String, out int index))
                     {
                         string id = sheet[row, (int)Columns.Id].String;
+                        TranslatableText text;
+                        if(isDemo && !EditorConst.IsCorrect(sheet[row, (int)Columns.IsDemo].String))
+                        {
+                            text = TranslatableText.GetDummyText();
+                        }
+                        else
+                        {
+                            text = EditorUtil.GetTranslatableText<LanguageConst.AvailableLanguage>(sheet, row, (int)Columns.MessageStart, 1);
+                        }
+
                         LanguageMessageDataList.Add(new LanguageMessageMasterData.Record(index, id)
                         {
-                            SettableMessage = EditorUtil.GetTranslatableText<LanguageConst.AvailableLanguage>(sheet,row,(int)Columns.MessageStart)
+                            SettableMessage = text
                         });
                     }
                 }

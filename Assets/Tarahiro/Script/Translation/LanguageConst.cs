@@ -12,13 +12,14 @@ namespace Tarahiro
 {
     public static class LanguageConst
     {
-        public const int AvailableLanguageNumber = 2;
+        public const int AvailableLanguageNumber = 3;
 
         [System.Serializable]
         public enum AvailableLanguage
         {
             Japanese,
             English,
+            SimplifiedChinese,
         }
     }
 }

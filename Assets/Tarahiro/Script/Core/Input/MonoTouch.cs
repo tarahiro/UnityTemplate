@@ -16,12 +16,14 @@ namespace Tarahiro.TInput
         List<Vector2> _prevPositionList = new List<Vector2>();
         List<float> _prevTimeList = new List<float>();
         Transform _clickedGameObject;
+        Transform _hoveredGameObject;
         RaycastHit2D _hit2D;
 
         public TouchConst.TouchState State { get; private set; } = TouchConst.TouchState.None;
         public Vector2 BeginScreenPoint { get; private set; }
-        public Vector2 ScreenPointOnThisFrame => _prevPositionList[_prevPositionList.Count - 1];
+        public Vector2 ScreenPointOnThisFrame => _prevPositionList.Count > 0 ? _prevPositionList[_prevPositionList.Count - 1] : Vector2.zero;
         public Transform ClickedGameObject => _clickedGameObject;
+        public Transform HoveredGameObject => _hoveredGameObject;
         public RaycastHit2D Hit2D => _hit2D;
         public float TimeOnThisFrame => _prevTimeList[_prevTimeList.Count - 1];
 
@@ -41,6 +43,7 @@ namespace Tarahiro.TInput
             _prevTimeList.Add(Time.time);
 
             Ray ray = Camera.main.ScreenPointToRay(ScreenPointOnThisFrame);
+            Debug.DrawRay(ray.origin, ray.direction, Color.red, 1f, false);
             _hit2D = Physics2D.Raycast(ray.origin, ray.direction);
 
             if (_prevPositionList.Count > c_storedFrameCount)
@@ -50,6 +53,19 @@ namespace Tarahiro.TInput
             if (_prevTimeList.Count > c_storedFrameCount)
             {
                 _prevTimeList.RemoveAt(0);
+            }
+
+
+            RaycastHit hit;
+            //hoverCheck
+            if (Physics.Raycast(ray, out hit))
+            {
+                _hoveredGameObject = hit.transform;
+                Log.DebugLog("hovered:" + _hoveredGameObject.name);
+            }
+            else
+            {
+                _hoveredGameObject = null;
             }
 
             switch (State)
@@ -195,11 +211,18 @@ namespace Tarahiro.TInput
             BeginScreenPoint = ScreenPointOnThisFrame;
 
             Ray ray = Camera.main.ScreenPointToRay(ScreenPointOnThisFrame);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if (hit.collider)
+            Debug.DrawRay(ray.origin, ray.direction*(4f/Mathf.Abs(ray.direction.z)), Color.green, 1f, false);
+
+            //UnityEngine.UI.GraphicRaycaster graphicRaycaster =GameObject.Find("Canvas").GetComponent<UnityEngine.UI.GraphicRaycaster>();
+
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray,out hit))
             {
                 _clickedGameObject = hit.transform;
+                Log.DebugLog("clicked:" + _clickedGameObject.name);
             }
+            
         }
 
         void Touching()

@@ -13,6 +13,6 @@ namespace Tarahiro.Ui
 {
     public interface IEmbeddedTextPresenter : IPostInitializable
     {
-        void OnFind(EmbeddedTranslationTextView findedView);
+        void OnFind(IEmbeddedTextView findedView);
     }
 }

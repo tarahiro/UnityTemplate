@@ -16,7 +16,7 @@ namespace Tarahiro.Ui
     {
         [Inject] ILanguageMessageMasterDataProvider _provider;
         [Inject] EmbeddedTextViewFinder _viewManager;
-        [Inject] ISubscriber<int> _subscriber;
+        [Inject] ITranslationTextViewPureFactory _factory;
 
         CompositeDisposable _disposable = new CompositeDisposable();
 
@@ -28,11 +28,11 @@ namespace Tarahiro.Ui
             _viewManager.Initialize();
         }
 
-        public void OnFind(EmbeddedTranslationTextView findedView)
+        public void OnFind(IEmbeddedTextView findedView)
         {
-            findedView.Construct(_subscriber);
+            findedView.CoreCreate(_factory);
 
-            var master = _provider.TryGetFromId(findedView.Id);
+            var master = _provider.TryGetFromId(findedView.TextId);
             if(master != null)
             {
                 findedView.SetTranslatableText(master.GetMaster().Message);

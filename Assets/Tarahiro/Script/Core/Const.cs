@@ -12,6 +12,7 @@ namespace Tarahiro
     {
         public const string c_true = "True";
         public const string c_false = "False";
+        public const int c_loopBigNumber = 1000000;
 
         public enum OrderOnMonoCanvas
         {

@@ -31,7 +31,7 @@ namespace Tarahiro.OtherGame
             int iconCount = Math.Min(spritePathList.Count, OtherGameConst.c_iconNumber);
             for (int i = 0; i < spritePathList.Count && i < OtherGameConst.c_iconNumber; i++)
             {
-                var v = factory.Invoke(ResourceUtil.GetResource<Sprite>(spritePathList[i]));
+                var v = factory.Invoke(UtilResource.GetResource<Sprite>(spritePathList[i]));
                 v.transform.parent = _iconRoot;
                 v.transform.localScale = Vector3.one;
                 UiUtil.SetUiComponentOnAlinedAnchoredPosition(_iconRoot, v.transform.GetComponent<RectTransform>(), c_iconMergin, i, iconCount);
@@ -50,7 +50,7 @@ namespace Tarahiro.OtherGame
 
         void OnClick()
         {
-            //IOtherGameMenuView‚É§Œä‚ğ“n‚·
+            //IOtherGameMenuViewï¿½Éï¿½ï¿½ï¿½ï¿½nï¿½ï¿½
             _menuView.ShowView();
             _menuView.Enter();
 

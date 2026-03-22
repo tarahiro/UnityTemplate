@@ -20,5 +20,12 @@ namespace Tarahiro
             childRect.anchoredPosition = Vector2.right * positionX;
         }
 
+        public static void SetColor(UnityEngine.UI.Graphic graphic, int a)
+        {
+            Color c = graphic.color;
+            c.a = (float)a / 255f;
+            graphic.color = c;
+        }
+
     }
 }

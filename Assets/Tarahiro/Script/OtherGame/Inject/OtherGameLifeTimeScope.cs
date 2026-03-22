@@ -17,20 +17,20 @@ namespace Tarahiro.OtherGame.Inject
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            Log.Comment("OtherGameLifetimeScope‚ÅRegisterŠJn");
+            Log.Comment("OtherGameLifetimeScopeï¿½ï¿½Registerï¿½Jï¿½n");
             //OtherGame
             builder.RegisterFactory<Sprite, IOtherGameIcon>(container =>
             {
 
                 return sprite =>
                 {
-                    var prefab = ResourceUtil.GetResource<OtherGameIcon>("Prefab/OtherGameIcon");
+                    var prefab = UtilResource.GetResource<OtherGameIcon>("Prefab/OtherGameIcon");
                     OtherGameIcon instance = container.Instantiate(prefab);
                     instance.Construct(sprite);
                     return instance;
                 };
             }, Lifetime.Scoped);
-            //’Êí‚ÍƒQ[ƒ€ƒR[ƒh‚ğ“ü‚ê‚é‚ªA‚±‚ÌƒQ[ƒ€‚Í“Á—á
+            //ï¿½Êï¿½ÍƒQï¿½[ï¿½ï¿½ï¿½Rï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½é‚ªï¿½Aï¿½ï¿½ï¿½ÌƒQï¿½[ï¿½ï¿½ï¿½Í“ï¿½ï¿½ï¿½
             builder.Register<OtherGameModel>(Lifetime.Singleton).WithParameter("Temp").AsImplementedInterfaces();
             builder.RegisterComponentInHierarchy<OtherGameAbstructView>().AsImplementedInterfaces();
             builder.RegisterComponentInHierarchy<OtherGameMenuView>().AsImplementedInterfaces();
@@ -41,7 +41,7 @@ namespace Tarahiro.OtherGame.Inject
             {
                 return args =>
                 {
-                    var prefab = ResourceUtil.GetResource<OtherGameMenuItemView>("Prefab/OtherGameMenuItemView");
+                    var prefab = UtilResource.GetResource<OtherGameMenuItemView>("Prefab/OtherGameMenuItemView");
                     OtherGameMenuItemView instance = container.Instantiate(prefab);
                     instance.Construct(args);
                     return instance;

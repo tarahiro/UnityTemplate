@@ -96,7 +96,7 @@ namespace Tarahiro.MasterData
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         protected void InitializeImpl(string dataPath)
 		{
-			var data = ResourceUtil.GetResource<MasterDataOrderedDictionary<DataType, InterfaceType>>(dataPath);
+			var data = UtilResource.GetResource<MasterDataOrderedDictionary<DataType, InterfaceType>>(dataPath);
 			m_List = data.m_List;
             m_Dictionary = data.m_Dictionary;
 			Log.DebugAssert(data != null, $"ScriptableObjectの初期化に失敗しました。リソース：{dataPath} が存在しません。");

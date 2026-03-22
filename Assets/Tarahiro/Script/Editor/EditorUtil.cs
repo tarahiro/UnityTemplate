@@ -27,6 +27,17 @@ namespace Tarahiro.Editor
             }
         }
 
+        public static T[] GetEnumArray<T>(TableCell cell) where T : Enum
+        {
+            string[] stringArray = GetStringArray(cell);
+            T[] enumArray = new T[stringArray.Length];
+            for (int i = 0; i < stringArray.Length; i++)
+            {
+                enumArray[i] = UtilEnum.KeyToType<T>(stringArray[i]);
+            }
+            return enumArray;
+        }
+
         public static string[] GetStringArrayFromCells(IWorksheet sheet, int row, int startColumn, int columnInterval)
         {
             List<string> returnable = new List<string>();
@@ -39,13 +50,13 @@ namespace Tarahiro.Editor
             return returnable.ToArray();
         }
 
-        public static TranslatableText GetTranslatableText<T>(IWorksheet sheet, int row, int startColumn)
+        public static TranslatableText GetTranslatableText<T>(IWorksheet sheet, int row, int startColumn, int interval = 0)
         {
             List<string> textString = new List<string>();
 
             for(int i = 0; i < UtilEnum.GetTypeNum<T>(); i++)
             {
-                textString.Add(sheet[row, startColumn + i].String);
+                textString.Add(sheet[row, startColumn + interval + i*(1 + interval)].String);
             }
 
             return new TranslatableText(textString.ToArray());

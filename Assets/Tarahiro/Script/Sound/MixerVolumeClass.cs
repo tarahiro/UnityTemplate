@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-/*
-using Csq;
-using Csq.Asset;
-*/
+using static ConstSound;
+using Tarahiro;
 
 public class MixerVolumeClass : MonoBehaviour
 {
@@ -36,8 +34,11 @@ public class MixerVolumeClass : MonoBehaviour
     float _currentDecibel;
     float _currentTime;
     float _changeTime;
-    public SoundManager.MixerExposedParameter mixerLabelEnum { get; set; }
 
+    public void Construct(string exposedParameterName)
+    {
+        _exposedParameterName = exposedParameterName;
+    }
 
     public void SetVolumeLevel(int volumeLevel, float changeTime = DEFAULT_CHANGE_TIME)
     {
@@ -59,6 +60,7 @@ public class MixerVolumeClass : MonoBehaviour
 
     public void Mute(bool IsMute, float changeTime = DEFAULT_CHANGE_TIME)
     {
+        Log.DebugLog("Mute: " + _exposedParameterName + " " +  IsMute);
         this.IsMute = IsMute;
         SetVolume(CalculateVolume(), changeTime);
     }
@@ -92,7 +94,7 @@ public class MixerVolumeClass : MonoBehaviour
     {
         if (_currentTime < _changeTime)
         {
-            _currentDecibel = _initialDecibel + (_finalDecibel - _initialDecibel) * Const.AccelDecel(_currentTime / _changeTime);
+            _currentDecibel = _initialDecibel + (_finalDecibel - _initialDecibel) * ConstSound.AccelDecel(_currentTime / _changeTime);
         }
         else
         {
@@ -133,7 +135,7 @@ public class MixerVolumeClass : MonoBehaviour
 
     float DecibelFromLevel(int level)
     {
-        float rate = ((float)level) / (MAX_LEVEL - 1);
+        float rate = ((float)level) / MAX_LEVEL;
 
         if (rate > 0.0001f)
         {

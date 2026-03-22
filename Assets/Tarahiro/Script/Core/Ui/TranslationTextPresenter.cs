@@ -9,16 +9,15 @@ using VContainer.Unity;
 using UniRx;
 using MessagePipe;
 using Tarahiro.Ui;
-using UnityEditor.VersionControl;
 
-namespace Tarahiro
+namespace gaw241201.View
 {
     public class TranslationTextPresenter : IPostInitializable
     {
-        [Inject] TranslationTextViewFinder _viewManager;
+        [Inject] EmbeddedTranslationTextViewFinder _viewManager;
         CompositeDisposable _disposable = new CompositeDisposable();
 
-        [Inject] ISubscriber<int> _subscriber;
+        [Inject] ILanguageSubscribable _subscriber;
 
 
 
@@ -28,7 +27,7 @@ namespace Tarahiro
             _viewManager.Initialize();
         }
 
-        public void OnFind(TranslationTextView findedView)
+        public void OnFind(ITranslationTextView findedView)
         {
             findedView.Construct(_subscriber);
         }

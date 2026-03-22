@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Const
+public class ConstSound
 {
     // 計算用に使う定数
     public const float Sqrt2per2 = 0.70710678118f;
@@ -60,7 +60,6 @@ public class Const
     {
         return x * x;
     }
-
     public static float Decel(float x)
     {
         return 1.0f - (1.0f - x) * (1.0f - x);
@@ -90,4 +89,41 @@ public class Const
             return Accel((x - 0.5f) * 2.0f) / 2.0f + 0.5f; // 0.5～1.0→0.5～1.0の写像を加速で行う
         }
     }
+
+
+
+    public enum MixerLabel
+    {
+        EventSE,
+        EnvironmentalSE,
+    }
+
+    public static Dictionary<MixerLabel, string> MixerDicionary = new Dictionary<MixerLabel, string>()
+    {
+        {MixerLabel.EventSE, "EventSE" },
+        {MixerLabel.EnvironmentalSE, "EnvironmentalSE" },
+    };
+
+
+
+    public enum MixerExposedParameter
+    {
+        BgmRoot,
+        Bgm,
+        Sfx,
+        SeRoot,
+        EnvironmentalSE,
+        BattleSE
+    }
+
+    public static Dictionary<MixerExposedParameter, string> MixerExposedParameterNameDictionary = new Dictionary<MixerExposedParameter, string>()
+    {
+            {MixerExposedParameter.BgmRoot, "VolumeOfBGMRoot" },
+            {MixerExposedParameter.Bgm, "VolumeOfBgm" },
+            {MixerExposedParameter.Sfx, "VolumeOfSfx" },
+            {MixerExposedParameter.SeRoot, "VolumeOfSeRoot" },
+            {MixerExposedParameter.EnvironmentalSE, "VolumeOfEnvironmentalSE" },
+            {MixerExposedParameter.BattleSE, "VolumeOfBattleSE" }
+    };
+
 }

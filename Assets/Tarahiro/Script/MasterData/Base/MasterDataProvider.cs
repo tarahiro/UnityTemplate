@@ -22,7 +22,7 @@ namespace Tarahiro.MasterData
         protected void Load(string filePath)
         {
             string path = MasterDataConst.DataPath + filePath;
-            m_Dictionary = ResourceUtil.GetResource<MasterDataOrderedDictionary<DataType, InterfaceType>>(path);
+            m_Dictionary = UtilResource.GetResource<MasterDataOrderedDictionary<DataType, InterfaceType>>(path);
         }
 
         public InterfaceType TryGetFromIndex(int index)

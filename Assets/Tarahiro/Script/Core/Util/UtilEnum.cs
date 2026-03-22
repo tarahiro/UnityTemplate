@@ -52,5 +52,25 @@ namespace Tarahiro
             return Enum.GetValues(typeof(T)).Length;
         }
 
+        public static List<int> GetListInt<T>(List<T> enumList) where T : Enum
+        {
+            List<int> intList = new List<int>();
+            foreach (T item in enumList)
+            {
+                intList.Add(Convert.ToInt32(item));
+            }
+            return intList;
+        }
+
+        public static List<T> GetListEnum<T>(List<int> intList) where T : Enum
+        {
+            List<T> enumList = new List<T>();
+            foreach (int item in intList)
+            {
+                enumList.Add(NoToType<T>(item));
+            }
+            return enumList;
+        }
+
     }
 }
