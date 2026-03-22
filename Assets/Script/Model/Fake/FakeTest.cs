@@ -10,11 +10,11 @@ namespace gaw241201
     #if ENABLE_DEBUG
     public class FakeTest : IStartable
     {
-        [Inject] ITemplateMasterDataProvider seMasterDataProvider;
+        [Inject] ITemplateMasterDataProvider masterDataProvider;
         public void Start()
         {
-            var seMasterData = seMasterDataProvider.TryGetFromId("Enter3").GetMaster();
-            Debug.Log(seMasterData.FakeDescription);
+            var masterData = masterDataProvider.TryGetFromId("Enter4").GetMaster();
+            Debug.Log(masterData.FakeDescription);
         }
 
     }
