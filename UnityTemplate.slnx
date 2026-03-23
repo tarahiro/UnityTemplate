@@ -12,7 +12,6 @@
   <Project Path="Tarahiro.OtherGame.Inject.csproj" />
   <Project Path="Tarahiro.Inject.csproj" />
   <Project Path="FakeProject.csproj" />
-  <Project Path="FakeProject.Inject.csproj" />
   <Project Path="FakeProject.Model.csproj" />
   <Project Path="Tarahiro.OtherGame.Editor.csproj" />
   <Project Path="Tarahiro.OtherGame.MasterData.csproj" />

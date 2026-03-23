@@ -12,16 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f44982abf564b24d9f219b2bb0348b4, type: 3}
   m_Name: Template
   m_EditorClassIdentifier: FakeProject.Model.MasterData::gaw241201.Model.MasterData.TemplateMasterData
-  m_List:
-  - m_Index: 0
-    m_Id: Enter
-    m_FakeDescription: Test4
-  - m_Index: 1
-    m_Id: Enter2
-    m_FakeDescription: Test3
-  - m_Index: 2
-    m_Id: Enter3
-    m_FakeDescription: Test33
-  - m_Index: 3
-    m_Id: Enter4
-    m_FakeDescription: Test44sas
+  m_List: []
